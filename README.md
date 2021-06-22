@@ -22,22 +22,16 @@
 
 ## Overview
 
-App converts [Supervisely](https://app.supervise.ly) images project to matching tags to lists of images to which these tags belong and prepares downloadable `json` file. 
+App converts [Supervisely](https://app.supervise.ly) images project to `json`, matching tags to lists of images to which these tags belong and prepares downloadable `json` file. 
 
 
 
 ## How To Run 
 **Step 1**: Add app to your team from [Ecosystem](https://ecosystem.supervise.ly/apps/convert-supervisely-to-MOT) if it is not there.
 
-**Step 2**: Open context menu of video project -> `Download via App` -> `Convert Supervisely to MOT format` 
+**Step 2**: Open context menu of images project -> `Download via App` -> `Convert Supervisely to MOT format` 
 
 <img src="https://i.imgur.com/2U1invp.png" width="800px"/>
-
-**Step 3**: Select project export mode.
-
-<img src="https://i.imgur.com/dZIp3g7.png" width="600px"/>
-
-**Note:** For case `Export all geometry shapes` all object shapes(polygons, bitmaps, etc) other than rectangle will be converted to rectangles.
 
 ## How to use
 
