@@ -10,7 +10,7 @@
   "task_location": "workspace_tasks",
   "isolate": true,
   "headless": true,
-  "icon": "https://i.imgur.com/TZD3Rjm.png",
+  "icon": "https://i.imgur.com/MbrN2VU.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": ["images_project"],
