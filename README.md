@@ -22,7 +22,7 @@
 
 ## Overview
 
-App create report from [Supervisely](https://app.supervise.ly) images project, which contain matching tags to lists of images to which these tags belong, and prepares downloadable `json` file. 
+App create report from [Supervisely](https://app.supervise.ly) images project and prepares downloadable `json` file. Report contain matching tags to lists of images to which these tags belong. 
 
 
 
