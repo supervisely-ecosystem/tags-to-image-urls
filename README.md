@@ -3,7 +3,7 @@
 
 
 
-# Tags to images urls.
+# Tags to images urls
 
 <p align="center">
   <a href="#Overview">Overview</a> •
@@ -22,23 +22,25 @@
 
 ## Overview
 
-App converts [Supervisely](https://app.supervise.ly) images project to `json`, matching tags to lists of images to which these tags belong and prepares downloadable `json` file. 
+App create report from [Supervisely](https://app.supervise.ly) images project, which contain matching tags to lists of images to which these tags belong, and prepares downloadable `json` file. 
 
 
 
 ## How To Run 
 **Step 1**: Add app to your team from [Ecosystem](https://ecosystem.supervise.ly/apps/convert-supervisely-to-MOT) if it is not there.
 
-**Step 2**: Open context menu of images project -> `Download via App` -> `Convert Supervisely to MOT format` 
+**Step 2**: Open context menu of images project -> `Report` -> `Tags to images urls` 
 
-<img src="https://i.imgur.com/2U1invp.png" width="800px"/>
+<img src="https://i.imgur.com/8nhsBKH.png"/>
+
+
 
 ## How to use
 
 After running the application, you will be redirected to the `Tasks` page. Once application processing has finished, your link for downloading will be available. Click on the `file name` to download it.
 
-<img src="https://i.imgur.com/61Ghukb.png"/>
+<img src="https://i.imgur.com/wTB9VFu.png"/>
 
-**Note:** You can also find your converted project in `Team Files`->`Convert Supervisely to MOT`->`<taskId>_<projectId>_<projectName>.tar.gz`
+**Note:** You can also find your converted project in `Team Files`->`tags_to_urls`->`<taskId>_<TeamId>_<projectName>.json`.
 
-<img src="https://i.imgur.com/aKCI2Iq.png"/>
+<img src="https://i.imgur.com/StJZzSY.png"/>
