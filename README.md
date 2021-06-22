@@ -31,7 +31,7 @@ App create report from [Supervisely](https://app.supervise.ly) images project an
 
 **Step 2**: Open context menu of images project -> `Report` -> `Tags to images urls` 
 
-<img src="https://i.imgur.com/8nhsBKH.png"/>
+<img src="https://i.imgur.com/8nhsBKH.png" width="800px"/>
 
 
 
