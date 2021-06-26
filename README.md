@@ -22,6 +22,9 @@
 
 ## Overview
 
+icon idea - https://icons8.com/icon/110286/networking-manager
+
+
 App create report from [Supervisely](https://app.supervise.ly) images project and prepares downloadable `json` file. Report contain matching tags to lists of images to which these tags belong. 
 
 
