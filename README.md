@@ -61,4 +61,4 @@ Your file will placed to the following path: `Team Files`->`tags_to_urls`->`<tas
 
 In the file folder simply right click on the file name and choose `Download` option to download it.
 
-<img src="https://i.imgur.com/StJZzSY.png"/>
+<img src="https://i.imgur.com/GIiuw7O.gif"/>
