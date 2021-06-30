@@ -21,14 +21,14 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     file_remote = "/tags_to_urls/{}_{}_{}.json".format(TASK_ID, TEAM_ID, project_name)
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
-    for tagmeta in meta.tag_metas:
-        tags_to_urls[tagmeta.name] = []
-    id_to_tagmeta = meta.tag_metas.get_id_mapping()
+    for tag_meta in meta.tag_metas:
+        tags_to_urls[tag_meta.name] = []
+    id_to_tag_meta = meta.tag_metas.get_id_mapping()
     datasets = api.dataset.get_list(PROJECT_ID)
     for dataset in datasets:
         images = api.image.get_list(dataset.id)
         for image_info in images:
-            tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tagmeta)
+            tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
             for tag in tags:
                 tags_to_urls[tag.name].append(image_info.full_storage_url)
 
@@ -37,7 +37,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     sly.fs.ensure_base_path(file_local)
     dump_json_file(tags_to_urls, file_local)
     file_info = api.file.upload(TEAM_ID, file_local, file_remote)
-    api.task._set_custom_output(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
+    api.task.set_output_report(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
 
     app_logger.info("Local file successfully uploaded to team files")
 
@@ -56,4 +56,3 @@ def main():
 
 if __name__ == '__main__':
     sly.main_wrapper("main", main)
-
