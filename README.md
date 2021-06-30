@@ -53,10 +53,9 @@ Application creates report from Supervisely images project that contains images 
 ## How to use
 
 After running the application, you will be redirected to the `Tasks` page. Once application processing has finished, your file will be available for downloading. 
+Click on the `file name` to open file folder.
 
 Your file will placed to the following path: `Team Files`->`tags_to_urls`->`<taskId>_<TeamId>_<projectName>.json`. 
-
-Click on the `file name` to open file folder.
 
 <img src="https://i.imgur.com/wTB9VFu.png"/>
 
