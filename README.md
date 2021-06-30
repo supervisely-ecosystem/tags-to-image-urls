@@ -1,9 +1,9 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/RKgPSU9.png"/>
+<img src="https://i.imgur.com/KtnbrQe.png"/>
 
 
 
-# Tags to images urls
+# Tags to image URLs
 
 <p align="center">
   <a href="#Overview">Overview</a> •
@@ -23,7 +23,7 @@
 
 ## Overview
 
-Application creates report from [Supervisely](https://app.supervise.ly) images project and contains matching tags with lists of images to which these tags belong. 
+Application creates report from Supervisely images project that contains images URLs with tags to which these images belong in `json` format.
 
 **Example `.json` file:**
 
