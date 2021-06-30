@@ -57,7 +57,7 @@ Click on the `file name` to open file folder.
 
 Your file will placed to the following path: `Team Files`->`tags_to_urls`->`<taskId>_<TeamId>_<projectName>.json`. 
 
-<img src="https://i.imgur.com/wTB9VFu.png"/>
+<img src="https://i.imgur.com/X79Yqft.png"/>
 
 In the file folder simply right click on the file name and choose `Download` option to download it.
 
