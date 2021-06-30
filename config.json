@@ -4,7 +4,7 @@
   "categories": [
     "report"
   ],
-  "description": "Creates report with images URLs assigned to tags in json format",
+  "description": "Saves tag to images mapping to a json file",
   "docker_image": "supervisely/base-py-sdk:6.1.86",
   "main_script": "src/main.py",
   "task_location": "workspace_tasks",
