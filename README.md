@@ -47,7 +47,7 @@ Application creates report from Supervisely images project that contains images 
 
 **Step 2**: Open context menu of images project -> `Report` -> `Tags to image URLs` 
 
-<img src="https://i.imgur.com/rZCF9eW.png" width="800px"/>
+<img src="https://i.imgur.com/rZCF9eW.png" width="600px"/>
 
 
 ## How to use
