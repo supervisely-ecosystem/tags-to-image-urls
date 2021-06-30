@@ -23,7 +23,7 @@
 
 ## Overview
 
-Application creates report from Supervisely images project that contains images URLs with tags to which these images belong in `json` format.
+App creates for every tag in project the list of image URLs and saves resulting tag **➜** urls mapping to a JSON file, this app is a part of [classification collection](https://ecosystem.supervise.ly/collections).
 
 **Example `.json` file:**
 
