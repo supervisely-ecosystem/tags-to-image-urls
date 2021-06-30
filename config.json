@@ -1,16 +1,16 @@
 {
-  "name": "Tags to images urls",
+  "name": "Tags to image URLs",
   "type": "app",
   "categories": [
     "report"
   ],
-  "description": "Download tags to images urls data to json file",
-  "docker_image": "supervisely/base-py-sdk:6.1.59",
+  "description": "Creates report with images URLs assigned to tags in json format",
+  "docker_image": "supervisely/base-py-sdk:6.1.86",
   "main_script": "src/main.py",
   "task_location": "workspace_tasks",
   "isolate": true,
   "headless": true,
-  "icon": "https://i.imgur.com/MbrN2VU.png",
+  "icon": "https://i.imgur.com/ijjjtx7.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": ["images_project"],
