@@ -22,9 +22,9 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
 
-    app_logger.debug(MODE)
-    app_logger.warn(MODE)
-    app_logger.info(MODE)
+    app_logger.debug(state)
+    app_logger.warn(state)
+    app_logger.info(state)
 
     for tag_meta in meta.tag_metas:
         tags_to_urls[tag_meta.name] = []
