@@ -1,0 +1,10 @@
+<div>
+    <sly-field title="Select save mode"
+               description="Select which type of tags you want to save">
+        <el-select v-model="state.saveMode">
+            <el-option key="both" label="Images and objects" value="both"></el-option>
+            <el-option key="images" label="Only images" value="images"></el-option>
+            <el-option key="objects" label="Only objects" value="objects"></el-option>
+        </el-select>
+    </sly-field>
+</div>
