@@ -17,6 +17,7 @@ MODE = os.environ['modal.state.saveMode']
 @my_app.callback("tags_to_images_urls")
 @sly.timeit
 def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
+    app_logger.debug(MODE)
     tags_to_urls = {}
     project_name = api.project.get_info_by_id(PROJECT_ID).name
     file_remote = "/tags_to_urls/{}_{}_{}.json".format(TASK_ID, TEAM_ID, project_name)
