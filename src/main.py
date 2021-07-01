@@ -19,7 +19,7 @@ MODE = os.environ['modal.state.saveMode']
 @sly.timeit
 def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
 
-    sleep(1800**10)
+    sleep(1000)
 
     print(f"CONTEXT: {context}")
     print(f"STATE: {state}")
