@@ -9,7 +9,7 @@
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
-    "saveMode": "both"
+    "saveMode": "objects"
   },
   "task_location": "workspace_tasks",
   "icon": "https://i.imgur.com/ijjjtx7.png",
