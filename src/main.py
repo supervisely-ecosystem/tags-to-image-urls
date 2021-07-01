@@ -1,3 +1,5 @@
+from time import sleep
+
 import os
 import supervisely_lib as sly
 from supervisely_lib.annotation.annotation import TagCollection
@@ -12,24 +14,23 @@ PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
 TASK_ID = int(os.environ["TASK_ID"])
 MODE = os.environ['modal.state.saveMode']
 
-my_app.logger.info(MODE)
-my_app.logger.debug(MODE)
 
 @my_app.callback("tags_to_images_urls")
 @sly.timeit
 def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
+
+    sleep(1800**10)
+
+    print(f"CONTEXT: {context}")
+    print(f"STATE: {state}")
+    app_logger.info(MODE)
+
+
     tags_to_urls = {}
     project_name = api.project.get_info_by_id(PROJECT_ID).name
     file_remote = "/tags_to_urls/{}_{}_{}.json".format(TASK_ID, TEAM_ID, project_name)
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
-
-    print(context)
-    print(state)
-    app_logger.debug(state)
-    app_logger.warn(state)
-    app_logger.info(state)
-
 
     for tag_meta in meta.tag_metas:
         tags_to_urls[tag_meta.name] = []
