@@ -10,7 +10,6 @@ TEAM_ID = int(os.environ['context.teamId'])
 WORKSPACE_ID = int(os.environ['context.workspaceId'])
 PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
 TASK_ID = int(os.environ["TASK_ID"])
-
 MODE = os.environ['modal.state.saveMode']
 
 
@@ -18,6 +17,7 @@ MODE = os.environ['modal.state.saveMode']
 @sly.timeit
 def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     app_logger.debug(MODE)
+    app_logger.debug(f"{MODE}")
     tags_to_urls = {}
     project_name = api.project.get_info_by_id(PROJECT_ID).name
     file_remote = "/tags_to_urls/{}_{}_{}.json".format(TASK_ID, TEAM_ID, project_name)
@@ -36,13 +36,15 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
                 for img_tag in img_tags:
                     tags_to_urls[img_tag.name].append(image_info.full_storage_url)
         if MODE == "both" or MODE == "objects":
-            anns = api.annotation.get_list(dataset.id)
-            for ann_info in anns:
+            annotations = api.annotation.get_list(dataset.id)
+            for ann_info in annotations:
                 ann = sly.Annotation.from_json(ann_info.annotation, meta)
                 image_info = api.image.get_info_by_id(ann_info.image_id)
                 for label in ann.labels:
                     for lbl_tag in label.tags:
                         tags_to_urls[lbl_tag.name].append(image_info.full_storage_url)
+
+    app_logger.debug(f"{MODE}")
 
     file_local = os.path.join(my_app.data_dir, file_remote.lstrip("/"))
     app_logger.info("Local file path: {!r}".format(file_local))
