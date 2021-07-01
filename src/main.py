@@ -12,6 +12,8 @@ PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
 TASK_ID = int(os.environ["TASK_ID"])
 MODE = os.environ['modal.state.saveMode']
 
+my_app.logger.info(MODE)
+my_app.logger.debug(MODE)
 
 @my_app.callback("tags_to_images_urls")
 @sly.timeit
@@ -22,9 +24,12 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
 
+    print(context)
+    print(state)
     app_logger.debug(state)
     app_logger.warn(state)
     app_logger.info(state)
+
 
     for tag_meta in meta.tag_metas:
         tags_to_urls[tag_meta.name] = []
@@ -61,7 +66,8 @@ def main():
     sly.logger.info("Script arguments", extra={
         "TEAM_ID": TEAM_ID,
         "WORKSPACE_ID": WORKSPACE_ID,
-        "modal.state.slyProjectId": PROJECT_ID
+        "modal.state.slyProjectId": PROJECT_ID,
+        "modal.state.saveMode": MODE
     })
 
     my_app.run(initial_events=[{"command": "tags_to_images_urls"}])
