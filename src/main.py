@@ -28,13 +28,13 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     id_to_tag_meta = meta.tag_metas.get_id_mapping()
     datasets = api.dataset.get_list(PROJECT_ID)
     for dataset in datasets:
-        if MODE == "both" or MODE == "Only images":
+        if MODE == "both" or MODE == "images":
             images = api.image.get_list(dataset.id)
             for image_info in images:
                 img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
                 for img_tag in img_tags:
                     tags_to_urls[img_tag.name].append(image_info.full_storage_url)
-        if MODE == "both" or MODE == "Only objects":
+        if MODE == "both" or MODE == "objects":
             anns = api.annotation.get_list(dataset.id)
             for ann_info in anns:
                 ann = sly.Annotation.from_json(ann_info.annotation, meta)
