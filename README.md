@@ -49,8 +49,11 @@ App creates for every tag in project the list of image URLs and saves resulting 
 
 <img src="https://i.imgur.com/rZCF9eW.png" width="600px"/>
 
-
 ## How to use
+
+In the modal window select which type of tags you want to save and click `RUN` button.
+
+<img src="https://i.imgur.com/LimohG4.png" width="600px"/>
 
 After running the application, you will be redirected to the `Tasks` page. Once application processing has finished, your file will be available for downloading. 
 Click on the `file name` to open file folder.
