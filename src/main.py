@@ -1,5 +1,3 @@
-from time import sleep
-
 import os
 import supervisely_lib as sly
 from supervisely_lib.annotation.annotation import TagCollection
@@ -49,7 +47,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     sly.fs.ensure_base_path(file_local)
     dump_json_file(tags_to_urls, file_local)
     file_info = api.file.upload(TEAM_ID, file_local, file_remote)
-    api.task._set_custom_output(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote), file_info.full_storage_url)
+    api.task._set_custom_output(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
     app_logger.info("Local file successfully uploaded to team files")
 
     my_app.stop()
