@@ -18,7 +18,7 @@ MODE = os.environ['modal.state.saveMode']
 def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     tags_to_urls = {}
     project_name = api.project.get_info_by_id(PROJECT_ID).name
-    file_remote = "/tags_to_urls/{}_{}_{}.json".format(TASK_ID, TEAM_ID, project_name)
+    file_remote = f"/tags_to_urls/{TASK_ID}_{TEAM_ID}_{project_name}.json"
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
 
@@ -29,26 +29,42 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     for dataset in datasets:
         if MODE == "both" or MODE == "images":
             images = api.image.get_list(dataset.id)
-            for image_info in images:
-                img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
-                for img_tag in img_tags:
-                    tags_to_urls[img_tag.name].append(image_info.full_storage_url)
+            progress = sly.Progress('Unpacking tags for images', len(images), app_logger)
+            for batch in sly.batched(images):
+                for image_info in batch:
+                    img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
+                    for img_tag in img_tags:
+                        tags_to_urls[img_tag.name].append(image_info.full_storage_url)
+                    progress.iters_done_report(len(batch))
         if MODE == "both" or MODE == "objects":
             annotations = api.annotation.get_list(dataset.id)
-            for ann_info in annotations:
-                ann = sly.Annotation.from_json(ann_info.annotation, meta)
-                image_info = api.image.get_info_by_id(ann_info.image_id)
-                for label in ann.labels:
-                    for lbl_tag in label.tags:
-                        tags_to_urls[lbl_tag.name].append(image_info.full_storage_url)
+            progress = sly.Progress('Unpacking tags for objects', len(annotations), app_logger)
+            for batch in sly.batched(annotations):
+                for ann_info in batch:
+                    ann = sly.Annotation.from_json(ann_info.annotation, meta)
+                    image_info = api.image.get_info_by_id(ann_info.image_id)
+                    for label in ann.labels:
+                        for lbl_tag in label.tags:
+                            tags_to_urls[lbl_tag.name].append(image_info.full_storage_url)
+                    progress.iters_done_report(len(batch))
 
     file_local = os.path.join(my_app.data_dir, file_remote.lstrip("/"))
     app_logger.info("Local file path: {!r}".format(file_local))
     sly.fs.ensure_base_path(file_local)
     dump_json_file(tags_to_urls, file_local)
-    file_info = api.file.upload(TEAM_ID, file_local, file_remote)
+
+    upload_progress = []
+    def _print_progress(monitor, upload_progress):
+        if len(upload_progress) == 0:
+            upload_progress.append(sly.Progress(message=f"Processing {TASK_ID}_{TEAM_ID}_{project_name}.json",
+                                                total_cnt=monitor.len,
+                                                ext_logger=app_logger,
+                                                is_size=True))
+        upload_progress[0].set_current_value(monitor.bytes_read)
+
+    file_info = api.file.upload(TEAM_ID, file_local, file_remote, lambda m: _print_progress(m, upload_progress))
     api.task._set_custom_output(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
-    app_logger.info("Local file successfully uploaded to team files")
+    app_logger.info("File has been successfully saved to team files")
 
     my_app.stop()
 
