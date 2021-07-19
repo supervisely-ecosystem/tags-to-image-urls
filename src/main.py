@@ -29,24 +29,23 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     datasets = api.dataset.get_list(PROJECT_ID)
     progress = sly.Progress('Writing tags to images URLs', project.images_count, app_logger)
     for dataset in datasets:
-        if MODE == "both" or MODE == "images":
-            images = api.image.get_list(dataset.id)
-            for batch in sly.batched(images):
-                for image_info in batch:
+        images = api.image.get_list(dataset.id)
+        for batch in sly.batched(images):
+            image_ids = [image_info.id for image_info in batch]
+            for image_info in batch:
+                if MODE == "both" or MODE == "images":
                     img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
                     for img_tag in img_tags:
                         tags_to_urls[img_tag.name].append(image_info.full_storage_url)
-                    progress.iters_done_report(len(batch))
-        if MODE == "both" or MODE == "objects":
-            annotations = api.annotation.get_list(dataset.id)
-            for batch in sly.batched(annotations):
-                for ann_info in batch:
+            if MODE == "both" or MODE == "objects":
+                ann_infos = api.annotation.download_batch(dataset.id, image_ids)
+                for ann_info in ann_infos:
                     ann = sly.Annotation.from_json(ann_info.annotation, meta)
                     image_info = api.image.get_info_by_id(ann_info.image_id)
                     for label in ann.labels:
                         for lbl_tag in label.tags:
                             tags_to_urls[lbl_tag.name].append(image_info.full_storage_url)
-                    progress.iters_done_report(len(batch))
+        progress.iters_done_report(len(batch))
 
     file_local = os.path.join(my_app.data_dir, file_remote.lstrip("/"))
     app_logger.info("Local file path: {!r}".format(file_local))
