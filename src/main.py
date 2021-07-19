@@ -17,7 +17,8 @@ MODE = os.environ['modal.state.saveMode']
 @sly.timeit
 def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     tags_to_urls = {}
-    project_name = api.project.get_info_by_id(PROJECT_ID).name
+    project = api.project.get_info_by_id(PROJECT_ID)
+    project_name = project.name
     file_remote = f"/tags_to_urls/{TASK_ID}_{TEAM_ID}_{project_name}.json"
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
@@ -26,10 +27,10 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
         tags_to_urls[tag_meta.name] = []
     id_to_tag_meta = meta.tag_metas.get_id_mapping()
     datasets = api.dataset.get_list(PROJECT_ID)
+    progress = sly.Progress('Writing tags to images URLs', project.images_count, app_logger)
     for dataset in datasets:
         if MODE == "both" or MODE == "images":
             images = api.image.get_list(dataset.id)
-            progress = sly.Progress('Writing tags for images', len(images), app_logger)
             for batch in sly.batched(images):
                 for image_info in batch:
                     img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
@@ -38,7 +39,6 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
                     progress.iters_done_report(len(batch))
         if MODE == "both" or MODE == "objects":
             annotations = api.annotation.get_list(dataset.id)
-            progress = sly.Progress('Writing tags for objects', len(annotations), app_logger)
             for batch in sly.batched(annotations):
                 for ann_info in batch:
                     ann = sly.Annotation.from_json(ann_info.annotation, meta)
