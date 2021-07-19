@@ -29,7 +29,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     for dataset in datasets:
         if MODE == "both" or MODE == "images":
             images = api.image.get_list(dataset.id)
-            progress = sly.Progress('Unpacking tags for images', len(images), app_logger)
+            progress = sly.Progress('Writing tags for images', len(images), app_logger)
             for batch in sly.batched(images):
                 for image_info in batch:
                     img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
@@ -38,7 +38,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
                     progress.iters_done_report(len(batch))
         if MODE == "both" or MODE == "objects":
             annotations = api.annotation.get_list(dataset.id)
-            progress = sly.Progress('Unpacking tags for objects', len(annotations), app_logger)
+            progress = sly.Progress('Writing tags for objects', len(annotations), app_logger)
             for batch in sly.batched(annotations):
                 for ann_info in batch:
                     ann = sly.Annotation.from_json(ann_info.annotation, meta)
