@@ -15,7 +15,10 @@
   "icon": "https://i.imgur.com/ijjjtx7.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
-    "target": ["images_project"],
+    "target": [
+      "images_project"
+    ],
     "context_root": "Report"
-  }
+  },
+  "poster": "https://i.imgur.com/KtnbrQe.png"
 }
