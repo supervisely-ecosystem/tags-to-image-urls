@@ -2,7 +2,9 @@
   "name": "Tags to image URLs",
   "type": "app",
   "categories": [
-    "report"
+    "images",
+    "export",
+    "annotation transformation"
   ],
   "description": "Saves tag to images mapping to a json file",
   "docker_image": "supervisely/base-py-sdk:6.1.86",
