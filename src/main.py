@@ -1,10 +1,11 @@
 import os
-import supervisely_lib as sly
-from supervisely_lib.annotation.annotation import TagCollection
-from supervisely_lib.io.json import dump_json_file
+import supervisely as sly
+from supervisely.annotation.annotation import TagCollection
+from supervisely.io.json import dump_json_file
+from supervisely.app.v1.app_service import AppService
 
 
-my_app = sly.AppService()
+my_app: AppService = AppService()
 
 TEAM_ID = int(os.environ['context.teamId'])
 WORKSPACE_ID = int(os.environ['context.workspaceId'])
@@ -36,7 +37,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
                 for image_info in batch:
                     img_tags = TagCollection.from_api_response(image_info.tags, meta.tag_metas, id_to_tag_meta)
                     for img_tag in img_tags:
-                        tags_to_urls[img_tag.name].append(image_info.full_storage_url)
+                        tags_to_urls[img_tag.name].append(image_info.path_original)
             if MODE == "both" or MODE == "objects":
                 ann_infos = api.annotation.download_batch(dataset.id, image_ids)
                 for ann_info in ann_infos:
@@ -44,7 +45,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
                     image_info = api.image.get_info_by_id(ann_info.image_id)
                     for label in ann.labels:
                         for lbl_tag in label.tags:
-                            tags_to_urls[lbl_tag.name].append(image_info.full_storage_url)
+                            tags_to_urls[lbl_tag.name].append(image_info.path_original)
         progress.iters_done_report(len(batch))
 
     file_local = os.path.join(my_app.data_dir, file_remote.lstrip("/"))
