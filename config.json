@@ -4,7 +4,8 @@
   "categories": [
     "images",
     "export",
-    "annotation transformation"
+    "annotation transformation",
+    "data-operations"
   ],
   "description": "Saves tag to images mapping to a json file",
   "docker_image": "supervisely/base-py-sdk:6.1.86",
