@@ -19,7 +19,8 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
     tags_to_urls = {}
     project = api.project.get_info_by_id(PROJECT_ID)
     project_name = project.name
-    file_remote = f"/tags_to_urls/{TASK_ID}_{TEAM_ID}_{project_name}.json"
+    file_remote = os.path.join(
+        sly.team_files.RECOMMENDED_EXPORT_PATH, f"tags_to_urls/{TASK_ID}_{TEAM_ID}_{project_name}.json")
     meta_json = api.project.get_meta(PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
 
