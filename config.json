@@ -15,7 +15,7 @@
     "saveMode": "both"
   },
   "task_location": "workspace_tasks",
-  "icon": "https://i.imgur.com/ijjjtx7.png",
+  "icon": "media/icon.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": [
