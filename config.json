@@ -1,27 +1,27 @@
 {
-  "name": "Tags to image URLs",
-  "type": "app",
-  "categories": [
-    "images",
-    "export",
-    "annotation transformation",
-    "data operations"
-  ],
-  "description": "Saves tag to images mapping to a json file",
-  "docker_image": "supervisely/base-py-sdk:6.72.70",
-  "main_script": "src/main.py",
-  "modal_template": "src/modal.html",
-  "modal_template_state": {
-    "saveMode": "both"
-  },
-  "task_location": "workspace_tasks",
-  "icon": "https://i.imgur.com/ijjjtx7.png",
-  "icon_background": "#FFFFFF",
-  "context_menu": {
-    "target": [
-      "images_project"
+    "name": "Tags to image URLs",
+    "type": "app",
+    "categories": [
+        "images",
+        "export",
+        "annotation transformation",
+        "data operations"
     ],
-    "context_root": "Report"
-  },
-  "poster": "https://user-images.githubusercontent.com/48245050/182636117-e765e8ec-d073-404a-8068-f600eaefdcf3.png"
+    "description": "Saves tag to images mapping to a json file",
+    "docker_image": "supervisely/import-export:0.0.2",
+    "main_script": "src/main.py",
+    "modal_template": "src/modal.html",
+    "modal_template_state": {
+        "saveMode": "both"
+    },
+    "task_location": "workspace_tasks",
+    "icon": "https://i.imgur.com/ijjjtx7.png",
+    "icon_background": "#FFFFFF",
+    "context_menu": {
+        "target": [
+            "images_project"
+        ],
+        "context_root": "Report"
+    },
+    "poster": "https://user-images.githubusercontent.com/48245050/182636117-e765e8ec-d073-404a-8068-f600eaefdcf3.png"
 }
