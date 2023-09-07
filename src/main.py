@@ -46,7 +46,7 @@ def tags_to_images_urls(api: sly.Api, task_id, context, state, app_logger):
                     for label in ann.labels:
                         for lbl_tag in label.tags:
                             tags_to_urls[lbl_tag.name].append(image_info.full_storage_url)
-        progress.iters_done_report(len(batch))
+            progress.iters_done_report(len(batch))
 
     file_local = os.path.join(my_app.data_dir, file_remote.lstrip("/"))
     app_logger.info("Local file path: {!r}".format(file_local))
