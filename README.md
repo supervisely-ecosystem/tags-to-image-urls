@@ -12,29 +12,29 @@
 </p>
 
   
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/tags-to-image-urls)
-[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervise.ly/slack)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/tags-to-image-urls)
+[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/tags-to-image-urls)
-[![views](https://app.supervise.ly/img/badges/views/supervisely-ecosystem/tags-to-image-urls.png)](https://supervise.ly)
-[![runs](https://app.supervise.ly/img/badges/runs/supervisely-ecosystem/tags-to-image-urls.png)](https://supervise.ly)
+[![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/tags-to-image-urls.png)](https://supervisely.com)
+[![runs](https://app.supervisely.com/img/badges/runs/supervisely-ecosystem/tags-to-image-urls.png)](https://supervisely.com)
 
 </div>
 
 ## Overview
 
-App creates for every tag in project the list of image URLs and saves resulting tag **➜** urls mapping to a JSON file, this app is a part of [classification collection](https://ecosystem.supervise.ly/collections).
+App creates for every tag in project the list of image URLs and saves resulting tag **➜** urls mapping to a JSON file, this app is a part of [classification collection](https://ecosystem.supervisely.com/collections).
 
 **Example `.json` file:**
 
 ```json
 {
     "cat": [
-        "https://app.supervise.ly/...png",
-        "https://app.supervise.ly/...png"
+        "https://app.supervisely.com/...png",
+        "https://app.supervisely.com/...png"
     ],
     "dog": [
-         "https://app.supervise.ly/...png",
-         "https://app.supervise.ly/...png",
+         "https://app.supervisely.com/...png",
+         "https://app.supervisely.com/...png",
     ]
 }
 ```
@@ -42,7 +42,7 @@ App creates for every tag in project the list of image URLs and saves resulting 
 
 
 ## How To Run 
-**Step 1**: Add app to your team from [Ecosystem](https://ecosystem.supervise.ly/apps/tags-to-image-urls) if it is not there.
+**Step 1**: Add app to your team from [Ecosystem](https://ecosystem.supervisely.com/apps/tags-to-image-urls) if it is not there.
 
 **Step 2**: Open context menu of images project -> `Report` -> `Tags to image URLs` 
 
