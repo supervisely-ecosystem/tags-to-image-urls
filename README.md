@@ -12,7 +12,7 @@
 </p>
 
   
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/tags-to-image-urls)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](../../../../supervisely-ecosystem/tags-to-image-urls)
 [![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/tags-to-image-urls)
 [![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/tags-to-image-urls.png)](https://supervisely.com)
@@ -42,7 +42,7 @@ App creates for every tag in project the list of image URLs and saves resulting 
 
 
 ## How To Run 
-**Step 1**: Add app to your team from [Ecosystem](https://ecosystem.supervisely.com/apps/tags-to-image-urls) if it is not there.
+**Step 1**: Add app to your team from [Ecosystem](../../../../supervisely-ecosystem/tags-to-image-urls) if it is not there.
 
 **Step 2**: Open context menu of images project -> `Report` -> `Tags to image URLs` 
 
