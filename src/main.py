@@ -1,7 +1,7 @@
 import os
-import supervisely_lib as sly
-from supervisely_lib.annotation.annotation import TagCollection
-from supervisely_lib.io.json import dump_json_file
+import supervisely as sly
+from supervisely.annotation.annotation import TagCollection
+from supervisely.io.json import dump_json_file
 
 
 my_app = sly.AppService()
